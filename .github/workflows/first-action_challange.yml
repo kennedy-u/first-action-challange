@@ -1,0 +1,42 @@
+name: first_challange 
+
+on: [push] 
+
+jobs: 
+    job1: 
+        name: First job
+        runs-on: ubuntu-latest
+        steps:
+        - name: Step one
+          uses: actions/checkout@v2
+        - name: Step two
+          run: date +"%Y-%m-%d %H:%M:%S"
+    job2:
+        name: Second job
+        runs-on: windows-latest
+        steps:
+        - name: Step one
+          uses: actions/checkout@v2
+        - name: Step two
+          run: |
+           $date = Get-Date
+           $date.ToString("yyyy-MM-dd HH:mm:ss")
+    job3: 
+        name: Third job
+        runs-on: macos-latest
+        steps:
+        - name: Step one
+          uses: actions/checkout@v2
+        - name: Step two
+          run: date +"%Y-%m-%d %H:%M:%S"
+    job4:
+        name: Forth job
+        needs: [job1, job2, job3]
+        runs-on: windows-latest
+        steps:
+        - name: Step one
+          uses: actions/checkout@v2
+        - name: Step two
+          run: |
+            $date = Get-Date
+            $date.ToString("yyyy-MM-dd HH:mm:ss")
